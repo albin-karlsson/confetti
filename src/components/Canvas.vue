@@ -1,7 +1,9 @@
 <template>
-  <div @mousemove="draw" class="w-full h-screen bg-gray-100 fixed">
-    <canvas ref="canvas" class=""></canvas>
-  </div>
+  <canvas
+    @mousemove="draw"
+    ref="canvas"
+    class="w-full h-screen bg-gray-100 fixed"
+  ></canvas>
 </template>
 
 <script>
@@ -38,11 +40,14 @@ export default {
       return ctx;
     },
     createCircle(ctx) {
-      ctx.fillRect(this.x, this.y, 5, 5);
-
+      const randomDegrees = Math.floor(Math.random() * 360);
+      const randomSize = Math.floor(Math.random() * (7 - 3)) + 3;
+      ctx.translate(this.x, this.y);
+      ctx.rotate(randomDegrees);
+      ctx.fillRect(0, 0, randomSize, randomSize);
+      ctx.rotate(-randomDegrees);
+      ctx.translate(-this.x, -this.y);
       ctx.fillStyle = this.getHex();
-
-      console.log(this.getHex());
       ctx.stroke();
     },
     getHex() {
