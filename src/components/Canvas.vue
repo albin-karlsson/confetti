@@ -29,7 +29,7 @@ export default {
     },
     calculateLocation(e) {
       this.x = (e.offsetX / this.right) * 300;
-      this.y = (e.offsetY / this.bottom) * 150;
+      this.y = (e.offsetY / this.bottom) * 180;
     },
     createCanvas() {
       const canvas = this.$refs.canvas;
