@@ -16,6 +16,8 @@ export default {
       y: 0,
       right: 0,
       bottom: 0,
+      allConfetti: [],
+      maxConfetti: 100,
     };
   },
   methods: {
@@ -27,6 +29,15 @@ export default {
       this.setBoundingRect();
       this.calculateLocation(e);
       this.createCircle(this.createCanvas());
+    },
+    moveDown(ctx) {
+      const canvas = this.$refs.canvas;
+
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      ctx.putImageData(imageData, 0, 1);
     },
     setBoundingRect() {
       let boundingRect = this.$refs.canvas.getBoundingClientRect();
@@ -53,6 +64,8 @@ export default {
       ctx.translate(-this.x, -this.y);
       ctx.fillStyle = this.getHex();
       ctx.stroke();
+
+      this.moveDown(ctx);
     },
     getHex() {
       var red = this.rgbToHex(this.color.r);
