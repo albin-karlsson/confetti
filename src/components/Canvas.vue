@@ -20,6 +20,10 @@ export default {
   },
   methods: {
     draw(e) {
+      if (this.color.r == 0 && this.color.g == 0 && this.color.b == 0) {
+        return;
+      }
+
       this.setBoundingRect();
       this.calculateLocation(e);
       this.createCircle(this.createCanvas());
